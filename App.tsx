@@ -19,29 +19,35 @@ const App = () => {
     transform: [{translateX: offset.value.x}, {translateY: offset.value.y}],
   }));
 
+  const Button = () => (
+    <TouchableOpacity
+      onPress={() => {
+        offset.value = {
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+        };
+      }}>
+      <View style={{width: 500, height: 500, backgroundColor: 'grey'}} />
+    </TouchableOpacity>
+  );
+  const AnimatedRectangle = () => (
+    <Animated.View
+      style={[
+        animatedStyle,
+        {
+          width: 100,
+          height: 100,
+          backgroundColor: 'blue',
+        },
+      ]}>
+      <Text style={{color: 'white'}}>Why I'm not moving?</Text>
+    </Animated.View>
+  );
+
   return (
     <View style={{flex: 1}}>
-      <TouchableOpacity
-        onPress={() => {
-          offset.value = {
-            x: Math.random() * 100,
-            y: Math.random() * 100,
-          };
-        }}>
-        <View style={{width: 500, height: 500, backgroundColor: 'grey'}} />
-      </TouchableOpacity>
-
-      <Animated.View
-        style={[
-          animatedStyle,
-          {
-            width: 100,
-            height: 100,
-            backgroundColor: 'blue',
-          },
-        ]}>
-        <Text style={{color: 'white'}}>Why I'm not moving?</Text>
-      </Animated.View>
+      <Button />
+      <AnimatedRectangle />
     </View>
   );
 };
